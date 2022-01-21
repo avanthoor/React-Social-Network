@@ -1,0 +1,13 @@
+.postItem {
+    display: flex;
+    align-items: center;
+}
+
+.postMessage {
+    padding-left: 10px;
+}
+
+.post img {
+    width: 60px;
+    border-radius: 50%;
+}

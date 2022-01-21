@@ -1,0 +1,13 @@
+.profilePic img {
+    width: 100%;
+    height: 180px;
+}
+
+.myAva img {
+    width: 250px;
+}
+
+.myContacts {
+    list-style-type: none;
+    margin: 10px 0 10px 0;
+}

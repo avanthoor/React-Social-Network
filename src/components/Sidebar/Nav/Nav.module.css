@@ -1,0 +1,19 @@
+.nav ul {
+    list-style-type: none;
+}
+
+.nav li {
+    padding-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.item {
+    color: black;
+}
+
+.active {
+    color: plum;
+}
