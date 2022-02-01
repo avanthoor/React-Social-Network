@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css'
+import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 function ProfileInfo(props) {
     return (
@@ -13,6 +15,7 @@ function ProfileInfo(props) {
             <div className={classes.myAva}>
                 <img src={props.profile.photos.large}/>
             </div>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}  />
             <span>Обо мне: {props.profile.aboutMe}</span>
             <div>
                 <ul className={classes.myContacts}> Мои контакты:

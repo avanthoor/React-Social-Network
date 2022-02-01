@@ -9,6 +9,8 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import SidebarContainer from "./components/Sidebar/SidebarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
+import Users from "./components/Users/Users";
 
 function App(props) {
     return (
@@ -17,14 +19,16 @@ function App(props) {
             <SidebarContainer/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/profile/:userId"
-                           element={<ProfileContainer/>}/>
+                    <Route path="profile" element={<ProfileContainer/>}>
+                        <Route path=":userId" element={<ProfileContainer/>}/>
+                    </Route>
                     <Route path="/dialogs/*"
                            element={<DialogsContainer/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
-                    <Route path="/users" element={<UsersContainer/>}/>
+                    <Route path="/users" element={<Users/>}/>
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
             </div>
         </div>

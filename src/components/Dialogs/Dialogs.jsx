@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css'
 import DialogDesc from "./DialogDesc/DialogDesc";
 import Messages from "./Messages/Messages";
+import {Navigate} from "react-router-dom";
 
 function Dialogs(props) {
     let addMessage = () => {

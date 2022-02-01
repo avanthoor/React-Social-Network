@@ -1,18 +1,22 @@
-import {addPost, setUserProfile, updatePostText} from "../../redux/profileReducer";
+import {
+    addPost,
+    getStatus,
+    getUserProfile,
+    setUserProfile,
+    updatePostText,
+    updateStatus
+} from "../../redux/profileReducer.ts";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 
 import React, {Component} from 'react';
-import * as axios from "axios";
-import {useMatch} from "react-router-dom";
+import {useMatch, Navigate, useParams} from "react-router-dom";
+import WithAuthRedirect from "../../hoc/WithAuthRedirect";
 
 class ProfileContainer extends Component {
     componentDidMount() {
-        let userId =  this.props.match ? this.props.match.params.userId : '2'
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        this.props.getUserProfile(this.props.userId)
+        this.props.getStatus(this.props.userId)
     }
 
     render() {
@@ -22,11 +26,13 @@ class ProfileContainer extends Component {
     }
 }
 
+let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 
 const mapStateToProps = (state) => ({
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status
 })
 
 // const mapDispatchToProps = (dispatch) => ({
@@ -35,14 +41,25 @@ const mapStateToProps = (state) => ({
 // })
 
 const ProfileMatch = (props) => {
-    let match = useMatch("/profile/:userId/");
+    let {userId} = useParams()
+
+    if (!userId) {
+        userId = '21941'
+    }
+
     return (
-        <ProfileContainer {...props} match={match} />
+        <AuthRedirectComponent {...props} userId={userId}/>
     )
+    // let match = useMatch("/profile/:userId/");
+    // return (
+    //     <authRedirectComponent {...props} match={match} />
+    // )
 }
 
 export default connect(mapStateToProps, {
     addPost,
     updatePostText,
-    setUserProfile
+    getUserProfile,
+    getStatus,
+    updateStatus
 })(ProfileMatch)

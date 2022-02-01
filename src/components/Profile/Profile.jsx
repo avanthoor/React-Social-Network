@@ -19,12 +19,12 @@ const Profile = (props) => {
         props.updatePostText(postInner)
     }
 
-    let postDataElements = props.posts.map( post => <Post message={post.message} likes={post.likes} id={post.id} key={post.id} photo={props.profile.photos.small}/> )
+    let postDataElements = [...props.posts].reverse().map( post => <Post message={post.message} likes={post.likes} id={post.id} key={post.id} photo={props.profile.photos.small}/> )
 
 
     return (
         <div className={classes.content}>
-            <ProfileInfo profile={props.profile} />
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <textarea onChange={onPostChange} value={props.newPostText} />
             <button onClick={onAddPost}>Отправить</button>
             <div className={classes.blogWrapper}>

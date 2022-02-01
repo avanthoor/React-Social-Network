@@ -1,7 +1,24 @@
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_MESSAGE = 'UPDATE-MESSAGE'
 
-let initialState = {
+type DialogType = {
+    id: number
+    name:string
+    avaSrc: string
+}
+
+type MessageType = {
+    id: number
+    message: string
+}
+
+type InitialState = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessage: string
+}
+
+let initialState: InitialState = {
     dialogs: [
         {id: 1, name: 'Джотаро', avaSrc: "https://memepedia.ru/wp-content/uploads/2018/08/2.png"},
         {id: 2, name: 'Джозеф', avaSrc: "https://i.ytimg.com/vi/azQJzj_R4QI/maxresdefault.jpg"},
@@ -49,8 +66,17 @@ const dialogsReducer =  (state = initialState, action) =>  {
     }
 }
 
-export const addMessage = () => ({type: ADD_MESSAGE})
+type addMessageActionType = {
+    type: typeof ADD_MESSAGE
+}
 
-export const updateMessage = (text) => ({type: UPDATE_MESSAGE, messageText: text})
+type updateMessage = {
+    type: typeof UPDATE_MESSAGE
+    messageText: string
+}
+
+export const addMessage = (): addMessageActionType => ({type: ADD_MESSAGE})
+
+export const updateMessage = (text: string): updateMessage => ({type: UPDATE_MESSAGE, messageText: text})
 
 export default dialogsReducer
